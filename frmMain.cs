@@ -59,7 +59,7 @@ namespace Phexon_Hanger
                 {
                     byte[] fileBytes = await client.GetByteArrayAsync(Url);
                     await File.WriteAllBytesAsync(outputPath, fileBytes);
-                        MessageBox.Show($"{Name} has been installed");
+                    MessageBox.Show($"{Name} has been installed");
                     CheckIsInstalled();
                 }
                 catch (System.Net.Http.HttpRequestException)
@@ -69,16 +69,16 @@ namespace Phexon_Hanger
             }
         }
         Dictionary<int, Project> projects = new Dictionary<int, Project>();
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             projects.Add(1, new Project("https://github.com/Alex-J-key/MazeGameOne/releases/download/V0.0.2/MazeGame.dll", "MazeGame", "A simple maze game made using C#. Use wasd or arrow keys to move."));
             projects[1].CheckIsInstalled();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnMazeGame_Click(object sender, EventArgs e)
         {
-            
+
             if (projects[1].IsInstalled)
             {
                 projects[1].Run();
@@ -88,7 +88,7 @@ namespace Phexon_Hanger
                 MessageBox.Show($"{projects[1].Name} is not installed, now installing..");
                 projects[1].Download();
             }
-            
+
         }
         public bool CheckIfProjectIsInstalled(Project p)
         {
