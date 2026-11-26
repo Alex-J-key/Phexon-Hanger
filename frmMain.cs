@@ -11,6 +11,21 @@ namespace Phexon_Hanger
             InitializeComponent();
         }
 
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            projects.Add(1, new Project("https://github.com/Alex-J-key/MazeGameOne/releases/download/V0.0.2/MazeGame.dll", "MazeGame", "A simple maze game made using C#. Use wasd or arrow keys to move."));
+            projects.Add(2, new Project("https://github.com/Alex-J-key/Shapex/releases/download/v0.0.1/Shapex.dll", "Shapex", "A simple application which shows how shapes can be randomly generated. Press space to generate new world, use wasd to move"));
+
+            foreach (KeyValuePair<int,Project> kvp in projects)
+            { 
+                Project p = kvp.Value;
+                p.CheckIsInstalled();
+            }
+        }
+
+
+        Dictionary<int, Project> projects = new Dictionary<int, Project>();
         public class Project
         {
             public string Url;
@@ -68,31 +83,28 @@ namespace Phexon_Hanger
                 }
             }
         }
-        Dictionary<int, Project> projects = new Dictionary<int, Project>();
-
-        private void Form1_Load(object sender, EventArgs e)
+        public void LoadDLL(int ProjectIndex)
         {
-            projects.Add(1, new Project("https://github.com/Alex-J-key/MazeGameOne/releases/download/V0.0.2/MazeGame.dll", "MazeGame", "A simple maze game made using C#. Use wasd or arrow keys to move."));
-            projects[1].CheckIsInstalled();
-        }
+            Project p = projects[ProjectIndex];
 
-        private void btnMazeGame_Click(object sender, EventArgs e)
-        {
-
-            if (projects[1].IsInstalled)
+            if (p.IsInstalled)
             {
-                projects[1].Run();
+                p.Run();
             }
             else
             {
-                MessageBox.Show($"{projects[1].Name} is not installed, now installing..");
-                projects[1].Download();
+                MessageBox.Show($"{p.Name} is not installed, now installing..");
+                p.Download();
             }
-
         }
-        public bool CheckIfProjectIsInstalled(Project p)
+        private void btnMazeGame_Click(object sender, EventArgs e)
         {
-            return false;
+            LoadDLL(1);
+        }
+
+        private void btnShapex_Click(object sender, EventArgs e)
+        {
+            LoadDLL(2);
         }
     }
 }

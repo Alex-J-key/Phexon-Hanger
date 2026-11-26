@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             btnMazeGame = new Button();
+            btnShapex = new Button();
             SuspendLayout();
             // 
             // btnMazeGame
@@ -42,11 +43,22 @@
             btnMazeGame.UseVisualStyleBackColor = true;
             btnMazeGame.Click += btnMazeGame_Click;
             // 
+            // btnShapex
+            // 
+            btnShapex.Location = new Point(195, 37);
+            btnShapex.Name = "btnShapex";
+            btnShapex.Size = new Size(140, 59);
+            btnShapex.TabIndex = 1;
+            btnShapex.Text = "Shapex";
+            btnShapex.UseVisualStyleBackColor = true;
+            btnShapex.Click += btnShapex_Click;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnShapex);
             Controls.Add(btnMazeGame);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmMain";
@@ -58,5 +70,6 @@
         #endregion
 
         private Button btnMazeGame;
+        private Button btnShapex;
     }
 }
